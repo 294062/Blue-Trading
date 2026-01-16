@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blueprint Trading | Securities Assets Trading Blueprint</title>
+  <meta name="description" content="Blueprint Trading (Securities Assets Trading Blueprint) delivers automation-driven trading education, strategy coding, machine learning for trading, data analysis, and website design." />
+
+  <style>
+    :root{
+      --bg:#060B14;
+      --card:#0B1220;
+      --muted:#A9B4C7;
+      --text:#EAF0FF;
+      --accent:#6D7BFF;
+      --accent2:#25D366;
+      --border:rgba(255,255,255,0.08);
+      --shadow: 0 18px 50px rgba(0,0,0,0.45);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial;
+      background: radial-gradient(1200px 600px at 15% 5%, rgba(109,123,255,0.25), transparent 60%),
+                  radial-gradient(900px 500px at 90% 20%, rgba(37,211,102,0.18), transparent 55%),
+                  var(--bg);
+      color:var(--text);
+      line-height:1.55;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .container{width:min(1160px, 92%); margin:0 auto}
+
+    /* NAV */
+    .nav{
+      position:sticky; top:0; z-index:50;
+      background: rgba(6,11,20,0.7);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0;
+      gap:18px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:700;
+      letter-spacing:0.2px;
+    }
+    .logo{
+      width:38px; height:38px; border-radius:12px;
+      background: linear-gradient(135deg, var(--accent), rgba(109,123,255,0.2));
+      border:1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 10px 30px rgba(109,123,255,0.18);
+      display:grid; place-items:center;
+      font-size:14px;
+    }
+    .menu{
+      display:flex; align-items:center; gap:18px; flex-wrap:wrap;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+    }
+    .menu a:hover{color:var(--text)}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:12px 16px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.04);
+      color:var(--text);
+      font-weight:700;
+      font-size:14px;
+      transition: transform .15s ease, background .15s ease, border .15s ease;
+      cursor:pointer;
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,0.06)}
+    .btn-primary{
+      background: linear-gradient(135deg, var(--accent), rgba(109,123,255,0.35));
+      border:1px solid rgba(109,123,255,0.45);
+      box-shadow: 0 18px 40px rgba(109,123,255,0.18);
+    }
+    .btn-primary:hover{background: linear-gradient(135deg, rgba(109,123,255,0.95), rgba(109,123,255,0.25))}
+    .btn-green{
+      background: linear-gradient(135deg, var(--accent2), rgba(37,211,102,0.25));
+      border:1px solid rgba(37,211,102,0.45);
+    }
+
+    /* HERO */
+    .hero{
+      padding:74px 0 34px;
+    }
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .tag{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px;
+      border-radius:999px;
+      background: rgba(255,255,255,0.05);
+      border:1px solid var(--border);
+      color:var(--muted);
+      font-size:13px;
+      font-weight:700;
+    }
+    .tag span{
+      width:8px; height:8px; border-radius:999px;
+      background: var(--accent);
+      box-shadow: 0 0 18px rgba(109,123,255,0.8);
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size: clamp(28px, 4vw, 46px);
+      line-height:1.08;
+      letter-spacing:-0.8px;
+    }
+    .lead{
+      color:var(--muted);
+      font-size: clamp(15px, 1.6vw, 17px);
+      max-width: 58ch;
+      margin: 0 0 18px;
+    }
+    .cta-row{
+      display:flex; gap:12px; flex-wrap:wrap;
+      margin-top: 18px;
+    }
+
+    /* RIGHT CARD */
+    .hero-card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border:1px solid var(--border);
+      border-radius: 22px;
+      box-shadow: var(--shadow);
+      padding:18px;
+      position:relative;
+      overflow:hidden;
+      min-height: 260px;
+    }
+    .hero-card::before{
+      content:"";
+      position:absolute;
+      inset:-2px;
+      background: radial-gradient(400px 240px at 30% 10%, rgba(109,123,255,0.35), transparent 60%),
+                  radial-gradient(380px 220px at 80% 40%, rgba(37,211,102,0.18), transparent 55%);
+      opacity:0.9;
+      pointer-events:none;
+    }
+    .hero-card > *{position:relative}
+    .kpi{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+      margin-top: 8px;
+    }
+    .kpi .box{
+      padding:14px;
+      border-radius:18px;
+      background: rgba(6,11,20,0.75);
+      border:1px solid var(--border);
+    }
+    .kpi .num{
+      font-weight:900;
+      font-size:20px;
+      letter-spacing:-0.4px;
+    }
+    .kpi .lab{
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      margin-top:4px;
+    }
+    .small{
+      color:var(--muted);
+      font-size:13px;
+      margin-top: 10px;
+    }
+
+    /* SECTIONS */
+    section{
+      padding: 42px 0;
+    }
+    .section-title{
+      display:flex;
+      align-items:flex-end;
+      justify-content:space-between;
+      gap:18px;
+      margin-bottom:18px;
+    }
+    .section-title h2{
+      margin:0;
+      font-size: clamp(20px, 2.2vw, 28px);
+      letter-spacing:-0.3px;
+    }
+    .section-title p{
+      margin:0;
+      color:var(--muted);
+      max-width: 60ch;
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .grid-3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+    }
+    .card{
+      background: rgba(255,255,255,0.03);
+      border:1px solid var(--border);
+      border-radius: 22px;
+      padding:18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,0.22);
+    }
+    .card h3{
+      margin: 0 0 8px;
+      font-size:16px;
+      letter-spacing:-0.2px;
+    }
+    .card p{
+      margin:0;
+      color:var(--muted);
+      font-weight:600;
+      font-size:14px;
+    }
+
+    .pill{
+      display:inline-flex;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.04);
+      color:var(--muted);
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:10px;
+    }
+
+    /* PROCESS */
+    .steps{
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:14px;
+    }
+    .step{
+      border-radius:22px;
+      border:1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+      padding:16px;
+    }
+    .step .n{
+      width:34px; height:34px;
+      border-radius:12px;
+      display:grid; place-items:center;
+      background: rgba(109,123,255,0.12);
+      border:1px solid rgba(109,123,255,0.30);
+      font-weight:900;
+      margin-bottom:10px;
+    }
+    .step b{display:block; margin-bottom:6px}
+    .step span{color:var(--muted); font-weight:600; font-size:14px}
+
+    /* CONTACT */
+    .contact-wrap{
+      display:grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap:14px;
+    }
+    .form{
+      display:grid;
+      gap:10px;
+      margin-top:10px;
+    }
+    input, textarea{
+      width:100%;
+      padding:12px 14px;
+      border-radius:16px;
+      border:1px solid var(--border);
+      background: rgba(6,11,20,0.75);
+      color:var(--text);
+      outline:none;
+      font-weight:600;
+    }
+    textarea{min-height:110px; resize:vertical}
+
+    footer{
+      padding:26px 0 36px;
+      color:var(--muted);
+      border-top:1px solid var(--border);
+      margin-top: 20px;
+      font-weight:600;
+      font-size:13px;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 920px){
+      .hero-grid{grid-template-columns: 1fr}
+      .grid-3{grid-template-columns:1fr}
+      .steps{grid-template-columns:1fr 1fr}
+      .contact-wrap{grid-template-columns:1fr}
+      .menu{display:none}
+    }
+    @media (max-width: 520px){
+      .steps{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAV -->
+  <div class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#top">
+        <div class="logo">BT</div>
+        <div>
+          <div style="font-size:14px;">Blueprint Trading</div>
+          <div style="font-size:12px; color:var(--muted); font-weight:700;">Securities Assets Trading Blueprint</div>
+        </div>
+      </a>
+
+      <div class="menu">
+        <a href="#services">Services</a>
+        <a href="#about">About</a>
+        <a href="#process">How it works</a>
+        <a href="#contact">Contact</a>
+      </div>
+
+      <a class="btn btn-primary" href="#contact">Book a Call</a>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <main id="top" class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="tag"><span></span> Automation • Data • Strategy • Systems</div>
+
+          <h1>
+            Trade smarter with <span style="color:var(--accent)">automation</span>,<br/>
+            data-driven strategy & disciplined execution.
+          </h1>
+
+          <p class="lead">
+            Blueprint Trading helps traders and businesses unlock performance using
+            algorithmic thinking, Python data science, and high-precision strategy development.
+            This isn’t hype. It’s engineering-level structure for real-world outcomes.
+          </p>
+
+          <div class="cta-row">
+            <a class="btn btn-primary" href="#services">Explore Services</a>
+            <a class="btn btn-green" href="#contact">WhatsApp / Enquire</a>
+            <a class="btn" href="#about">View Credentials</a>
+          </div>
+
+          <p class="small">
+            Based in South Africa • Available remotely • One-on-one training & custom solutions
+          </p>
+        </div>
+
+        <aside class="hero-card">
+          <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:12px;">
+            <div>
+              <div class="pill">Founder Credentials</div>
+              <div style="font-weight:900; font-size:18px; letter-spacing:-0.2px;">Thabo Mosaka</div>
+              <div style="color:var(--muted); font-weight:700; font-size:13px; margin-top:2px;">
+                BSc Chemistry (Wits) • Data Science with Python (UCT)
+              </div>
+            </div>
+          </div>
+
+          <div class="kpi">
+            <div class="box">
+              <div class="num">BSc</div>
+              <div class="lab">Pure & Applied Chemistry</div>
+            </div>
+            <div class="box">
+              <div class="num">UCT</div>
+              <div class="lab">Data Science with Python</div>
+            </div>
+            <div class="box">
+              <div class="num">4/8</div>
+              <div class="lab">Modules at 100% pass</div>
+            </div>
+            <div class="box">
+              <div class="num">Focus</div>
+              <div class="lab">Automation & Strategies</div>
+            </div>
+          </div>
+
+          <div class="small">
+            Your edge becomes real when it’s measurable, repeatable, and automated.
+          </div>
+        </aside>
+      </div>
+    </div>
+  </main>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-title">
+        <h2>Services</h2>
+        <p>Structured solutions for traders and companies — built on logic, data and execution.</p>
+      </div>
+
+      <div class="grid-3">
+        <div class="card">
+          <div class="pill">01 • Trading Education</div>
+          <h3>Automation in Trading</h3>
+          <p>
+            Learn how professional trading systems are built: rules, risk control, execution,
+            and how to remove emotion using automation and disciplined structure.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill">02 • Strategy Development</div>
+          <h3>Coding Trading Strategies</h3>
+          <p>
+            Convert your proven manual strategy into an automated bot (EA/script) on the MetaTrader 4/5 platforms using MQL4/5 coding,
+            with clean logic, reliable execution, and risk safeguards.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill">03 • AI & Quant</div>
+          <h3>Machine Learning in Trading</h3>
+          <p>
+            Data-driven models for forecasting, classification, signal filtering,
+            and strategy optimization — with practical, real-market constraints.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill">04 • Business Intelligence</div>
+          <h3>Data Analysis for Companies</h3>
+          <p>
+            Turn raw data into decisions: dashboards, customer insights,
+            performance reporting, and operational improvements.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill">05 • Digital Presence</div>
+          <h3>Website Design</h3>
+          <p>
+            Clean, modern websites for brands and professionals — fast,
+            mobile-friendly, and built to convert.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="pill">06 • Custom Work</div>
+          <h3>Consulting & Projects</h3>
+          <p>
+            If your problem involves markets, automation, or data — we can design a solution.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <div class="section-title">
+        <h2>About Blueprint Trading</h2>
+        <p>A blueprint is a plan. A trading blueprint is a system.</p>
+      </div>
+
+      <div class="card">
+        <h3 style="margin-top:0;">Built on science, refined by data.</h3>
+        <p>
+          I’m Thabo Michael Mosaka, founder and CEO of Securities Assets Trading Blueprint, trading as Blueprint Trading.
+          My foundation is scientific thinking: I hold a Bachelor of Science degree majoring in
+          Pure Chemistry and Applied Chemistry from the University of the Witwatersrand.
+          I also completed a Data Science with Python course through the University of Cape Town,
+          achieving 100% pass marks in 4 of the 8 modules completed.
+        </p>
+        <p style="margin-top:10px;">
+          Blueprint Trading exists to help people and businesses move from
+          uncertainty and emotional decision-making to structured, logical, repeatable outcomes —
+          using automation, coding, and data.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process">
+    <div class="container">
+      <div class="section-title">
+        <h2>How it works</h2>
+        <p>Clear steps. Clean execution. Real delivery.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="n">1</div>
+          <b>Discovery</b>
+          <span>We define goals, constraints, and success metrics.</span>
+        </div>
+        <div class="step">
+          <div class="n">2</div>
+          <b>Design</b>
+          <span>We build a structured plan: rules, inputs, and risk controls.</span>
+        </div>
+        <div class="step">
+          <div class="n">3</div>
+          <b>Build</b>
+          <span>We code, test, validate, and refine until it’s stable.</span>
+        </div>
+        <div class="step">
+          <div class="n">4</div>
+          <b>Deploy</b>
+          <span>You receive a usable solution + support options.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-title">
+        <h2>Contact</h2>
+        <p>Tell me what you want to build — I’ll help you blueprint it.</p>
+      </div>
+
+      <div class="contact-wrap">
+        <div class="card">
+          <h3 style="margin-top:0;">Send an enquiry</h3>
+          <p>Fill in the form below. You can also add your WhatsApp number for a faster response.</p>
+
+          <form class="form" onsubmit="return handleSubmit(event)">
+            <input required type="text" name="name" placeholder="Your name" />
+            <input required type="email" name="email" placeholder="Email address" />
+            <input type="text" name="phone" placeholder="WhatsApp number (optional)" />
+            <textarea required name="message" placeholder="What do you want to build? (Trading bot, ML model, data project, website...)"></textarea>
+            <button class="btn btn-primary" type="submit">Submit Enquiry</button>
+            <div id="formMsg" class="small"></div>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0;">Fast options</h3>
+          <p>
+            ✅ Remote sessions available<br/>
+            ✅ Custom bots / scripts / projects<br/>
+            ✅ One-on-one mentoring
+          </p>
+
+          <div style="display:grid; gap:10px; margin-top:14px;">
+            <a class="btn btn-green" href="#" onclick="alert('Add your WhatsApp link here: https://wa.me/27XXXXXXXXX'); return false;">
+              WhatsApp (0833045661)
+            </a>
+            <a class="btn" href="#" onclick="alert('Add your email link here: mailto:you@domain.com'); return false;">
+              Email (blueprintsecuritiestrading@outlook.com)
+            </a>
+            <a class="btn" href="#" onclick="alert('Optional: Add Calendly or booking link'); return false;">
+              Book a Call (Optional)
+            </a>
+          </div>
+
+          <p class="small" style="margin-top:14px;">
+            Tip: Replace the placeholders with your real contact details before publishing.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Blueprint Trading (Securities Assets Trading Blueprint). All rights reserved.
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function handleSubmit(e){
+      e.preventDefault();
+      const msg = document.getElementById("formMsg");
+      msg.textContent = "✅ Thanks! Your enquiry is ready. (Connect this form to email or a backend when you publish.)";
+      return false;
+    }
+  </script>
+</body>
+</html>
